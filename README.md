@@ -1,7 +1,7 @@
 # Spectralify
 A comprehensive audio analysis toolkit for extracting spectral and musical features from your music library. Whether you're analyzing a single track or an entire music collection, Spectralify provides detailed insights through advanced visualization and statistical analysis.
 
-* Note, all music trained for example usges are owned on CD by the owner of this repository Luke Cutter
+* Note: All music tracks trained in the Example Analysis folder are owned on CD by the owner of this repository, Luke Cutter
 
 ## Features
 Deep Audio Analysis
