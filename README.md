@@ -1,6 +1,8 @@
 # Spectralify
 A comprehensive audio analysis toolkit for extracting spectral and musical features from your music library. Whether you're analyzing a single track or an entire music collection, Spectralify provides detailed insights through advanced visualization and statistical analysis.
 
+
+
 ## Features
 Deep Audio Analysis
 
@@ -9,6 +11,8 @@ Deep Audio Analysis
 - Rhythm and groove pattern analysis
 - Energy and dynamics profiling
 - Advanced MFCC (Mel-frequency cepstral coefficients) analysis
+
+
 
 ## Rich Visualization Suite
 
@@ -19,12 +23,22 @@ Deep Audio Analysis
 - Energy distribution graphs
 - Interactive HTML reports
 
+
+
 ## Processing Options 
 - Single file analysis
 - Album directory processing
 - Artist directory batch analysis
 - Full library scanning
 - Parallel processing for improved speed
+
+## Supported Audio Formats
+- FLAC (.flac)
+- MP3 (.mp3)
+- WAV (.wav)
+- AAC (.aac)
+- AIFF (.aiff)
+- WMA (.wma)
 
 # Quick Start
 ### Prerequisites
@@ -34,7 +48,9 @@ You'll need these installed first:
 - pip (Python package installer)
 - Jupyter Notebook (For Version 1.0, future versions will have other file formats)
 
-## Dependencies:
+
+
+# Dependencies:
 ```
 librosa
 audioread
@@ -46,20 +62,15 @@ matplotlib
 seaborn
 ```
 
-## Supported Audio Formats
-- FLAC (.flac)
-- MP3 (.mp3)
-- WAV (.wav)
-- AAC (.aac)
-- AIFF (.aiff)
-- WMA (.wma)
+
 
 # Usage
 ## Quick Input Format
-
 ```
 mode,path,output_directory,naming,visualizations,show_stats,show_docs,html_report
 ```
+## Standard Menu
+You can also choose to use the standard menu which will take the user step-by-step through the file loading and analysis portions!
 ## Analysis Modes
 
 1. Single file
@@ -93,6 +104,8 @@ output_dir/
 │   └── analysis_report.html
 ```
 
+
+
 # Troubleshooting
 ## Common Issues
 
@@ -106,7 +119,10 @@ Use batch processing for large libraries
 Enable parallel processing when available
 Monitor system resource usage
 
-## Contributing
+
+
+
+# Contributing
 
 Fork the repository
 Create a feature branch
