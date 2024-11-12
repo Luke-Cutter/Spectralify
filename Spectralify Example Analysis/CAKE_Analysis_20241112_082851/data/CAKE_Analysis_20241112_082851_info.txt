@@ -1,0 +1,36 @@
+Analysis performed on: 2024-11-12 08:28:51
+Input path: Music\Cake
+Analysis type: 3
+Tracks analyzed: 27
+Visualizations: Yes
+Statistics: Yes
+HTML Report: Yes
+
+Analyzed Tracks:
+- Race Car Ya-Yas (Fashion Nugget)
+- Stickshifts And Safetybelts (Fashion Nugget)
+- She'll Come Back To Me (Fashion Nugget)
+- Perhaps, Perhaps, Perhaps (Fashion Nugget)
+- The Distance (Fashion Nugget)
+- Friend Is A Four Letter Word (Fashion Nugget)
+- It's Coming Down (Fashion Nugget)
+- Daria (Fashion Nugget)
+- Open Book (Fashion Nugget)
+- Nugget [Edit] (Fashion Nugget)
+- Frank Sinatra (Fashion Nugget)
+- I Will Survive (Fashion Nugget)
+- Sad Songs And Waltzes (Fashion Nugget)
+- Italian Leather Sofa (Fashion Nugget)
+- Never There (Prolonging The Magic)
+- Satan Is My Motor (Prolonging The Magic)
+- Let Me Go (Prolonging The Magic)
+- Alpha Beta Parking Lot (Prolonging The Magic)
+- Cool Blue Reason (Prolonging The Magic)
+- Guitar (Prolonging The Magic)
+- Mexico (Prolonging The Magic)
+- Hem Of Your Garment (Prolonging The Magic)
+- You Turn The Screws (Prolonging The Magic)
+- When You Sleep (Prolonging The Magic)
+- Walk On By (Prolonging The Magic)
+- Sheep Go To Heaven (Prolonging The Magic)
+- Where Would I Be? (Prolonging The Magic)
