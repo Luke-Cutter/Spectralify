@@ -1,0 +1,10 @@
+Analysis performed on: 2024-11-13 00:03:25
+Input path: Music
+Analysis type: 4
+Tracks analyzed: 2088
+Visualizations: Yes
+Statistics: Yes
+HTML Report: Yes
+
+Analyzed Tracks:
+[Redacted for copyright purposes]
