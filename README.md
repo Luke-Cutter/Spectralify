@@ -112,7 +112,7 @@ output_dir/
 Importing:
 Use the Jupyter Notebook terminal and pip import the following-
 ```
-librosa, audioread, mutagen (all file types you need for your program), numpy, pandas, scipy, matplot lib, and seaborn.
+librosa, audioread, mutagen (all file types you need for your program), numpy, pandas, scipy, matplot lib, and seaborn
 ```
 
 
