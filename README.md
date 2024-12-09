@@ -1,4 +1,8 @@
-# Spectralify
+  <p align="center">
+    <img width="600" src="https://github.com/user-attachments/assets/7388b584-d8ed-4808-b5ce-7dfbe0f1c540" alt="Text Spectralify Logo">
+  </p>
+
+# What is SPECTRALIFY?
 A comprehensive audio analysis toolkit for extracting spectral and musical features from your music library. Whether you're analyzing a single track or an entire music collection, Spectralify provides detailed insights through advanced visualization and statistical analysis.
 
 * Note: All music tracks trained in the Example Analysis folder are owned on CD by the owner of this repository, Luke Cutter
