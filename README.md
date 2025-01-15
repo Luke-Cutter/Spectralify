@@ -7,7 +7,7 @@ A comprehensive audio analysis toolkit for extracting spectral and musical featu
 
 * Note: All music tracks trained in the Example Analysis folder are owned on CD by the owner of this repository, Luke Cutter
 
-# Check out SprectralifyWeb!
+# Check out SpectralifyWeb!
 [Click Here!](https://luke-cutter.github.io/SpectralifyWeb/)
 
 ## Features
