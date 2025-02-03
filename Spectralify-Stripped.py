@@ -1,4 +1,9 @@
-music_directory = "C:\\Users\\Cheig\\Music\\OnTheSpot\\Tracks"
+music_directory = """C:\\Users\\cole.heigis\\Music"""
+
+# run 
+# python
+# pip install pipreqs
+# pipreqs C:\Users\cole.heigis\Desktop\capstone\Spectralify\Spectralify-Stripped.py
 """
 Core imports and configuration setup
 Organized by functionality
@@ -11,12 +16,13 @@ import multiprocessing
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import threading
 import warnings
-from IPython.display import HTML
+#from IPython.display import HTML
 import time
 
 # Audio processing imports
 import librosa
 import audioread
+#from audioread import rawread
 from mutagen.flac import FLAC
 from mutagen.mp3 import MP3
 from mutagen.wave import WAVE
@@ -28,10 +34,6 @@ from mutagen.id3 import ID3
 import numpy as np
 import pandas as pd
 from scipy import stats
-
-# Visualization imports
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Suppress warnings
 warnings.filterwarnings('ignore')
@@ -321,49 +323,8 @@ def scan_music_directory(root_path):
     
     print(f"\n\nScan complete!")
     print(f"Found {len(audio_files)} audio files")
-    # print(f"Total size: {total_size / (1024*1024*1024):.2f} GB")
-    # print(f"Found in {len(set(f['parent_dir'] for f in audio_files))} directories")
-    # print(f"Total scan time: {total_time/60:.1f} minutes")
-    # print(f"Average scan rate: {total_files/total_time:.1f} files/second")
     
     return audio_files
-        
-# def create_progress_bar(current, total, bar_length=40, start_time=None):
-#     """Create text-based progress bar with improved time estimation formatting"""
-#     progress = int((current / total) * bar_length)
-#     bar = "█" * progress + "-" * (bar_length - progress)
-#     percentage = (current / total) * 100
-    
-#     # Time estimation
-#     time_str = ""
-#     if start_time and current > 0:
-#         elapsed = time.time() - start_time
-#         rate = elapsed / current
-#         remaining = rate * (total - current)
-        
-#         # Convert to appropriate units with better formatting
-#         if remaining > 3600:
-#             hours = int(remaining // 3600)
-#             minutes = int((remaining % 3600) // 60)
-#             seconds = int(remaining % 60)
-#             if minutes > 0:
-#                 if seconds > 0:
-#                     time_str = f" | ETA: {hours}h {minutes}min {seconds}s"
-#                 else:
-#                     time_str = f" | ETA: {hours}h {minutes}min"
-#             else:
-#                 time_str = f" | ETA: {hours}h"
-#         elif remaining > 60:
-#             minutes = int(remaining // 60)
-#             seconds = int(remaining % 60)
-#             if seconds > 0:
-#                 time_str = f" | ETA: {minutes}min {seconds}s"
-#             else:
-#                 time_str = f" | ETA: {minutes}min"
-#         else:
-#             time_str = f" | ETA: {int(remaining)}s"
-            
-#     return f"\rProgress: |{bar}| {percentage:.1f}% - File {current}/{total}{time_str}"
 
 def extract_features(audio_data, sr):
     """Extract comprehensive audio features with improved spectral analysis and flattened output"""
@@ -412,7 +373,6 @@ def extract_features(audio_data, sr):
     f0, voiced_flag, voiced_probs = librosa.pyin(audio_data, 
                                                 fmin=librosa.note_to_hz('C2'),
                                                 fmax=librosa.note_to_hz('C7'))
-    
     valid_pitches = pitches[magnitudes > np.mean(magnitudes) * 0.1]
     if len(valid_pitches) > 0:
         features['Average_Pitch'] = float(np.mean(valid_pitches))
