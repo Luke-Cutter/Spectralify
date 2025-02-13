@@ -327,46 +327,10 @@ def scan_music_directory(root_path):
     # print(f"Average scan rate: {total_files/total_time:.1f} files/second")
     
     return audio_files
-        
-# def create_progress_bar(current, total, bar_length=40, start_time=None):
-#     """Create text-based progress bar with improved time estimation formatting"""
-#     progress = int((current / total) * bar_length)
-#     bar = "█" * progress + "-" * (bar_length - progress)
-#     percentage = (current / total) * 100
-    
-#     # Time estimation
-#     time_str = ""
-#     if start_time and current > 0:
-#         elapsed = time.time() - start_time
-#         rate = elapsed / current
-#         remaining = rate * (total - current)
-        
-#         # Convert to appropriate units with better formatting
-#         if remaining > 3600:
-#             hours = int(remaining // 3600)
-#             minutes = int((remaining % 3600) // 60)
-#             seconds = int(remaining % 60)
-#             if minutes > 0:
-#                 if seconds > 0:
-#                     time_str = f" | ETA: {hours}h {minutes}min {seconds}s"
-#                 else:
-#                     time_str = f" | ETA: {hours}h {minutes}min"
-#             else:
-#                 time_str = f" | ETA: {hours}h"
-#         elif remaining > 60:
-#             minutes = int(remaining // 60)
-#             seconds = int(remaining % 60)
-#             if seconds > 0:
-#                 time_str = f" | ETA: {minutes}min {seconds}s"
-#             else:
-#                 time_str = f" | ETA: {minutes}min"
-#         else:
-#             time_str = f" | ETA: {int(remaining)}s"
-            
-#     return f"\rProgress: |{bar}| {percentage:.1f}% - File {current}/{total}{time_str}"
+
 
 def extract_features(audio_data, sr):
-    """Extract comprehensive audio features with improved spectral analysis and flattened output"""
+    # """Extract comprehensive audio features with improved spectral analysis and flattened output"""
     features = {}
     
     print("1")
@@ -377,8 +341,11 @@ def extract_features(audio_data, sr):
     print("2")
     # Key and pitch detection
     y_harmonic = librosa.effects.harmonic(audio_data)
+    print("21")
     chroma = librosa.feature.chroma_cqt(y=y_harmonic, sr=sr)
-    key_raw = librosa.feature.tonnetz(y=y_harmonic, sr=sr)
+    print("22")
+    #key_raw = librosa.feature.tonnetz(y=y_harmonic, sr=sr)
+    print("23")
     print("3")
     # Estimate musical key (same as before)
     key_profiles = {
@@ -407,31 +374,52 @@ def extract_features(audio_data, sr):
     features['Estimated_Key'] = estimated_key
     features['Key_Confidence'] = min(1.0, float(key_scores[estimated_key]) / 10)
     print("5")
-    # Pitch features
-    pitches, magnitudes = librosa.piptrack(y=audio_data, sr=sr)
-    f0, voiced_flag, voiced_probs = librosa.pyin(audio_data, 
-                                                fmin=librosa.note_to_hz('C2'),
-                                                fmax=librosa.note_to_hz('C7'))
+
+
+    # # Pitch features
+    # pitches, magnitudes = librosa.piptrack(y=audio_data, sr=sr)
+    # f0, voiced_flag, voiced_probs = librosa.pyin(audio_data, 
+    #                                             fmin=librosa.note_to_hz('C2'),
+    #                                             fmax=librosa.note_to_hz('C7'))
     
-    valid_pitches = pitches[magnitudes > np.mean(magnitudes) * 0.1]
+    # valid_pitches = pitches[magnitudes > np.mean(magnitudes) * 0.1]
+    # print("51")
+    # if len(valid_pitches) > 0:
+    #     features['Average_Pitch'] = float(np.mean(valid_pitches))
+    #     features['Pitch_Std'] = float(np.std(valid_pitches))
+    #     features['Pitch_Range'] = float(np.ptp(valid_pitches))
+    # else:
+    #     features['Average_Pitch'] = 0.0
+    #     features['Pitch_Std'] = 0.0
+    #     features['Pitch_Range'] = 0.0
+
+    # Enhanced pitch features with better noise handling
+    pitches, magnitudes = librosa.piptrack(y=audio_data, sr=sr)
+    valid_pitches = pitches[magnitudes > np.mean(magnitudes) * 0.1]  # Filter weak pitches
     if len(valid_pitches) > 0:
-        features['Average_Pitch'] = float(np.mean(valid_pitches))
-        features['Pitch_Std'] = float(np.std(valid_pitches))
-        features['Pitch_Range'] = float(np.ptp(valid_pitches))
+        features.update({
+            'Average_Pitch': float(np.mean(valid_pitches)),
+            'Pitch_Std': float(np.std(valid_pitches)),
+            'Pitch_Range': float(np.ptp(valid_pitches))
+        })
     else:
-        features['Average_Pitch'] = 0.0
-        features['Pitch_Std'] = 0.0
-        features['Pitch_Range'] = 0.0
+        features.update({
+            'Average_Pitch': 0.0,
+            'Pitch_Std': 0.0,
+            'Pitch_Range': 0.0
+        })
+    
+    
     print("6")
     # pYIN pitch features
-    valid_pyin = f0[voiced_flag]
-    features['pYIN_Pitch'] = float(np.mean(valid_pyin)) if len(valid_pyin) > 0 else 0.0
-    features['pYIN_Voiced_Rate'] = float(np.mean(voiced_flag))
-    features['pYIN_Confidence'] = float(np.mean(voiced_probs))
+    # valid_pyin = f0[voiced_flag]
+    # features['pYIN_Pitch'] = float(np.mean(valid_pyin)) if len(valid_pyin) > 0 else 0.0
+    # features['pYIN_Voiced_Rate'] = float(np.mean(voiced_flag))
+    # features['pYIN_Confidence'] = float(np.mean(voiced_probs))
     print("7")
     # Harmonic features
-    harmonic_predictions = librosa.effects.harmonic(audio_data)
-    features['Harmonic_Salience'] = float(np.mean(np.abs(harmonic_predictions)))
+    #harmonic_predictions = librosa.effects.harmonic(audio_data)
+    features['Harmonic_Salience'] = float(np.mean(np.abs(y_harmonic)))
     print("8")
     # Rhythm features
     tempo, beats = librosa.beat.beat_track(y=audio_data, sr=sr)
@@ -564,18 +552,24 @@ def extract_features(audio_data, sr):
     # Recurrence Quantification Analysis (RQA)
     try:
         D = librosa.segment.recurrence_matrix(mel_spec, mode='distance')
+        print("26.1")
         D = np.where(D > np.median(D), 1, 0)  # Convert to binary matrix
+        print("26.2")
         features['RQA_Density'] = float(np.mean(D))
-        
+        print("26.3")
         # Calculate RQA histogram values individually
         hist_values, _ = np.histogram(D.astype(float), bins=10)
+        print("26.4")
         for i, value in enumerate(hist_values):
             features[f'RQA_Hist_Bin_{i+1}'] = float(value)
-
+        #print("26.5")
         # Path-enhanced structure
-        path_sim = librosa.segment.path_enhance(D.astype(float), n=7)
-        features['Path_Structure_Mean'] = float(np.mean(path_sim))
-        features['Path_Structure_Std'] = float(np.std(path_sim))
+        # path_sim = librosa.segment.path_enhance(D.astype(float), n=7)
+        # print("26.6")
+        # features['Path_Structure_Mean'] = float(np.mean(path_sim))
+        # print("26.7")
+        # features['Path_Structure_Std'] = float(np.std(path_sim))
+        # print("26.8")
     except Exception as e:
         print(f"Warning: RQA calculation failed - {str(e)}")
         features['RQA_Density'] = 0.0
@@ -823,6 +817,6 @@ def process_scan_results(audio_files):
         print(f"Error processing scan results: {str(e)}")
         return None
     
-
-
+print("eeeeee")
+print(analyze_audio_file("C:\\Users\\Cheig\\Music\\OnTheSpot\\Tracks\\Noah Kahan\\[2023] Stick Season\\1. The View Between Villages (Extended).flac",1))
 run_analysis()
