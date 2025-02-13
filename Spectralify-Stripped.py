@@ -1,4 +1,9 @@
-music_directory = "C:\\Users\\Cheig\\Music\\OnTheSpot\\Tracks"
+music_directory = """C:\\Users\\cole.heigis\\Music"""
+
+# run 
+# python
+# pip install pipreqs
+# pipreqs C:\Users\cole.heigis\Desktop\capstone\Spectralify\Spectralify-Stripped.py
 """
 Core imports and configuration setup
 Organized by functionality
@@ -11,12 +16,13 @@ import multiprocessing
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import threading
 import warnings
-from IPython.display import HTML
+#from IPython.display import HTML
 import time
 
 # Audio processing imports
 import librosa
 import audioread
+#from audioread import rawread
 from mutagen.flac import FLAC
 from mutagen.mp3 import MP3
 from mutagen.wave import WAVE
@@ -28,10 +34,6 @@ from mutagen.id3 import ID3
 import numpy as np
 import pandas as pd
 from scipy import stats
-
-# Visualization imports
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 # Suppress warnings
 warnings.filterwarnings('ignore')
@@ -321,10 +323,6 @@ def scan_music_directory(root_path):
     
     print(f"\n\nScan complete!")
     print(f"Found {len(audio_files)} audio files")
-    # print(f"Total size: {total_size / (1024*1024*1024):.2f} GB")
-    # print(f"Found in {len(set(f['parent_dir'] for f in audio_files))} directories")
-    # print(f"Total scan time: {total_time/60:.1f} minutes")
-    # print(f"Average scan rate: {total_files/total_time:.1f} files/second")
     
     return audio_files
 
