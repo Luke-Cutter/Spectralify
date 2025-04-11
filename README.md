@@ -93,7 +93,7 @@ pip install librosa numpy pandas scipy mutagen audioread matplotlib seaborn
 
 ### Configuration
 
-1. Open the `Spectralify-Bulk.py` file
+1. Open the `Spectralify.py` file
 2. Set the `music_directory` variable to your music folder path:
 ```python
 music_directory = "C:\\Users\\[Your_Username]\\Music"  # Change this path
@@ -112,7 +112,7 @@ num_workers = max(1, int(multiprocessing.cpu_count() * 0.75))  # Default
 
 Run the analysis with:
 ```bash
-python Spectralify-Bulk.py
+python Spectralify.py
 ```
 
 The program will:
