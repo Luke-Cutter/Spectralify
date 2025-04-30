@@ -1155,7 +1155,7 @@ def main():
         music_directory = sys.argv[1]
     else:
         # Default directory - change this to your music directory
-        music_directory = "C:\\Users\\cutte\\Music\\Spoon\\Girls Can't Tell (EVIL)"
+        music_directory = "C://Users//Change//This//Path"
     
     # Run the application
     app = SpectralifyApp(music_directory)
